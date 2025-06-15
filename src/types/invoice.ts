@@ -24,5 +24,14 @@ export interface InvoiceData {
   notes: string;
   subtotal: number;
   tax: number;
+  taxType: 'fixed' | 'percentage';
+  taxRate: number;
   total: number;
+  currency: string;
+  template: string;
+  logo?: string;
 }
+
+export type TaxType = 'fixed' | 'percentage';
+export type Currency = 'USD' | 'EUR' | 'GBP' | 'CAD';
+export type InvoiceTemplate = 'modern' | 'classic' | 'minimal';
