@@ -52,13 +52,13 @@ const InvoiceDetailsForm = ({
               onChange={(e) => onUpdate('dueDate', e.target.value)}
               className="transition-all duration-200 focus:ring-2 focus:ring-primary/20"
             />
-            <div className="flex gap-1">
+            <div className="grid grid-cols-3 gap-1">
               <Button
                 type="button"
                 variant="outline"
                 size="sm"
                 onClick={() => onUpdate('dueDate', dateHelpers.net15)}
-                className="text-xs"
+                className="text-xs px-2 py-1 h-7"
               >
                 Net 15
               </Button>
@@ -67,7 +67,7 @@ const InvoiceDetailsForm = ({
                 variant="outline"
                 size="sm"
                 onClick={() => onUpdate('dueDate', dateHelpers.net30)}
-                className="text-xs"
+                className="text-xs px-2 py-1 h-7"
               >
                 Net 30
               </Button>
@@ -76,7 +76,7 @@ const InvoiceDetailsForm = ({
                 variant="outline"
                 size="sm"
                 onClick={() => onUpdate('dueDate', dateHelpers.net60)}
-                className="text-xs"
+                className="text-xs px-2 py-1 h-7"
               >
                 Net 60
               </Button>
