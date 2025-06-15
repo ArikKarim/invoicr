@@ -86,12 +86,15 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50 to-indigo-100 font-inter">
-      <div className="container mx-auto px-4 py-12">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50 to-indigo-100 font-inter flex flex-col">
+      <div className="container mx-auto px-4 py-12 flex-grow">
         <div className="mb-12">
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6">
             <div>
-              <h1 className="text-5xl font-bold text-gray-900 mb-3 tracking-tight">
+              <h1 
+                className="text-5xl font-bold mb-3 tracking-tight transition-colors duration-200"
+                style={{ color: buttonColor }}
+              >
                 Invoicr
               </h1>
               <p className="text-xl text-gray-500 font-normal max-w-md">
@@ -133,6 +136,14 @@ const Index = () => {
           </div>
         </div>
       </div>
+      
+      <footer className="bg-white border-t border-gray-200 py-6 mt-12">
+        <div className="container mx-auto px-4 text-center">
+          <p className="text-gray-600 text-sm">
+            © {new Date().getFullYear()} Invoicr. All rights reserved.
+          </p>
+        </div>
+      </footer>
     </div>
   );
 };
