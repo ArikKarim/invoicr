@@ -118,7 +118,7 @@ const Index = () => {
                 Invoicr
               </h1>
               <p className="text-xl text-gray-500 font-normal max-w-md">
-                Create professional invoices with ease and style.
+                Make a statement with Invoicr.
               </p>
             </div>
             <div className="flex-shrink-0">
