@@ -87,21 +87,27 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50 to-indigo-100 font-inter">
-      <div className="container mx-auto px-4 py-8">
-        <div className="mb-8 flex justify-between items-start">
-          <div className="text-left">
-            <h1 className="text-4xl font-bold text-gray-900 mb-2">
-              Invoicr
-            </h1>
-            <p className="text-gray-600 text-lg font-medium">Make a statement with Invoicr.</p>
+      <div className="container mx-auto px-4 py-12">
+        <div className="mb-12">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6">
+            <div>
+              <h1 className="text-5xl font-bold text-gray-900 mb-3 tracking-tight">
+                Invoicr
+              </h1>
+              <p className="text-xl text-gray-500 font-normal max-w-md">
+                Create professional invoices with ease and style.
+              </p>
+            </div>
+            <div className="flex-shrink-0">
+              <Button 
+                variant="outline" 
+                onClick={handleClearData}
+                className="px-6 py-2.5 text-sm font-medium border-gray-200 hover:bg-red-50 hover:border-red-200 hover:text-red-600 transition-all duration-200"
+              >
+                Clear All Data
+              </Button>
+            </div>
           </div>
-          <Button 
-            variant="outline" 
-            onClick={handleClearData}
-            className="hover:bg-red-50 hover:border-red-200 hover:text-red-700 font-medium"
-          >
-            Clear All Data
-          </Button>
         </div>
         
         <div className="grid lg:grid-cols-2 gap-8">
