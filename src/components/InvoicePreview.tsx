@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
@@ -9,9 +8,15 @@ import { calculateLineTotal, downloadInvoiceAsPDF, formatCurrency } from '@/util
 
 interface InvoicePreviewProps {
   invoiceData: InvoiceData;
+  buttonColor?: string;
+  invoiceBackgroundColor?: string;
 }
 
-const InvoicePreview = ({ invoiceData }: InvoicePreviewProps) => {
+const InvoicePreview = ({ 
+  invoiceData, 
+  buttonColor = '#2563eb',
+  invoiceBackgroundColor = '#ffffff'
+}: InvoicePreviewProps) => {
   const [isGeneratingPDF, setIsGeneratingPDF] = useState(false);
 
   const formatDate = (dateString: string) => {
@@ -42,7 +47,11 @@ const InvoicePreview = ({ invoiceData }: InvoicePreviewProps) => {
         <Button 
           onClick={handleDownloadPDF} 
           disabled={isGeneratingPDF}
-          className="flex items-center gap-2 bg-gradient-to-r from-primary to-blue-600 hover:from-primary/90 hover:to-blue-600/90"
+          className="flex items-center gap-2"
+          style={{ 
+            backgroundColor: buttonColor,
+            borderColor: buttonColor
+          }}
         >
           {isGeneratingPDF ? (
             <Loader2 className="h-4 w-4 animate-spin" />
@@ -55,9 +64,18 @@ const InvoicePreview = ({ invoiceData }: InvoicePreviewProps) => {
 
       <Card className="overflow-hidden shadow-2xl">
         <CardContent className="p-0">
-          <div id="invoice-preview" className="bg-white p-8 text-sm">
+          <div 
+            id="invoice-preview" 
+            className="p-8 text-sm"
+            style={{ backgroundColor: invoiceBackgroundColor }}
+          >
             {/* Header */}
-            <div className="bg-gradient-to-r from-primary to-blue-600 text-white -m-8 mb-6 p-8">
+            <div 
+              className="text-white -m-8 mb-6 p-8"
+              style={{ 
+                background: `linear-gradient(to right, ${buttonColor}, ${buttonColor}dd)`
+              }}
+            >
               <div className="flex justify-between items-start">
                 <div>
                   <h1 className="text-3xl font-bold mb-2">INVOICE</h1>
@@ -124,7 +142,7 @@ const InvoicePreview = ({ invoiceData }: InvoicePreviewProps) => {
             <div className="mb-8">
               <table className="w-full">
                 <thead>
-                  <tr className="border-b-2 border-primary/20">
+                  <tr className="border-b-2" style={{ borderColor: `${buttonColor}33` }}>
                     <th className="text-left py-3 font-semibold">Description</th>
                     <th className="text-center py-3 font-semibold w-20">Qty</th>
                     <th className="text-right py-3 font-semibold w-24">Rate</th>
@@ -165,7 +183,10 @@ const InvoicePreview = ({ invoiceData }: InvoicePreviewProps) => {
                       </span>
                     </div>
                   )}
-                  <div className="border-t pt-2 flex justify-between font-bold text-lg text-primary">
+                  <div 
+                    className="border-t pt-2 flex justify-between font-bold text-lg"
+                    style={{ color: buttonColor }}
+                  >
                     <span>Total:</span>
                     <span>{formatCurrency(invoiceData.total)}</span>
                   </div>

@@ -1,14 +1,17 @@
-
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { toast } from 'sonner';
 import InvoiceForm from '@/components/InvoiceForm';
 import InvoicePreview from '@/components/InvoicePreview';
+import ColorController from '@/components/ColorController';
 import { InvoiceData } from '@/types/invoice';
 import { generateInvoiceNumber } from '@/utils/invoiceUtils';
 import { useAutoSave } from '@/hooks/useAutoSave';
 
 const Index = () => {
+  const [buttonColor, setButtonColor] = useState('#2563eb');
+  const [invoiceBackgroundColor, setInvoiceBackgroundColor] = useState('#ffffff');
+  
   const [invoiceData, setInvoiceData] = useState<InvoiceData>({
     invoiceNumber: generateInvoiceNumber(),
     issueDate: new Date().toISOString().split('T')[0],
@@ -102,6 +105,12 @@ const Index = () => {
         
         <div className="grid lg:grid-cols-2 gap-8">
           <div className="space-y-6">
+            <ColorController
+              buttonColor={buttonColor}
+              invoiceBackgroundColor={invoiceBackgroundColor}
+              onButtonColorChange={setButtonColor}
+              onInvoiceBackgroundColorChange={setInvoiceBackgroundColor}
+            />
             <InvoiceForm 
               invoiceData={invoiceData} 
               setInvoiceData={setInvoiceData} 
@@ -109,7 +118,11 @@ const Index = () => {
           </div>
           
           <div className="lg:sticky lg:top-8 h-fit">
-            <InvoicePreview invoiceData={invoiceData} />
+            <InvoicePreview 
+              invoiceData={invoiceData}
+              buttonColor={buttonColor}
+              invoiceBackgroundColor={invoiceBackgroundColor}
+            />
           </div>
         </div>
       </div>
