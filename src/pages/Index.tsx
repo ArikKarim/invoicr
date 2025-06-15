@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { toast } from 'sonner';
@@ -44,7 +43,28 @@ const Index = () => {
 
   const { loadSavedData, clearSavedData } = useAutoSave(invoiceData);
 
+  // Save color preferences to localStorage
   useEffect(() => {
+    localStorage.setItem('colorPreferences', JSON.stringify({
+      buttonColor,
+      invoiceBackgroundColor
+    }));
+  }, [buttonColor, invoiceBackgroundColor]);
+
+  useEffect(() => {
+    // Load saved color preferences
+    try {
+      const savedColors = localStorage.getItem('colorPreferences');
+      if (savedColors) {
+        const { buttonColor: savedButtonColor, invoiceBackgroundColor: savedInvoiceColor } = JSON.parse(savedColors);
+        setButtonColor(savedButtonColor || '#2563eb');
+        setInvoiceBackgroundColor(savedInvoiceColor || '#ffffff');
+      }
+    } catch {
+      // If parsing fails, keep default colors
+    }
+
+    // Load saved invoice data
     const savedData = loadSavedData();
     if (savedData) {
       setInvoiceData(savedData);
