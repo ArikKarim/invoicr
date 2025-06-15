@@ -17,7 +17,7 @@ const InvoiceDetailsForm = ({
   dueDate, 
   onUpdate 
 }: InvoiceDetailsFormProps) => {
-  const dateHelpers = getDateHelpers();
+  const dateHelpers = getDateHelpers(issueDate);
 
   return (
     <div className="space-y-4">

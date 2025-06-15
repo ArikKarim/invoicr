@@ -39,13 +39,13 @@ export const formatCurrency = (amount: number) => {
   }).format(amount);
 };
 
-export const getDateHelpers = () => {
-  const today = new Date();
+export const getDateHelpers = (issueDate?: string) => {
+  const baseDate = issueDate ? new Date(issueDate) : new Date();
   
   return {
-    net15: new Date(today.getTime() + 15 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
-    net30: new Date(today.getTime() + 30 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
-    net60: new Date(today.getTime() + 60 * 24 * 60 * 60 * 1000).toISOString().split('T')[0]
+    net15: new Date(baseDate.getTime() + 15 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
+    net30: new Date(baseDate.getTime() + 30 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
+    net60: new Date(baseDate.getTime() + 60 * 24 * 60 * 60 * 1000).toISOString().split('T')[0]
   };
 };
 
