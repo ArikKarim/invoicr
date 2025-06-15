@@ -1,4 +1,3 @@
-
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -108,8 +107,6 @@ const InvoiceForm = ({ invoiceData, setInvoiceData }: InvoiceFormProps) => {
             invoiceNumber={invoiceData.invoiceNumber}
             issueDate={invoiceData.issueDate}
             dueDate={invoiceData.dueDate}
-            currency={invoiceData.currency}
-            template={invoiceData.template}
             onUpdate={(field, value) => updateField('root', field, value)}
           />
         </CardContent>
@@ -157,7 +154,6 @@ const InvoiceForm = ({ invoiceData, setInvoiceData }: InvoiceFormProps) => {
             onAdd={addLineItem}
             onRemove={removeLineItem}
             onDuplicate={duplicateLineItemHandler}
-            currency={invoiceData.currency}
           />
           
           <TaxTotalsForm
@@ -167,7 +163,6 @@ const InvoiceForm = ({ invoiceData, setInvoiceData }: InvoiceFormProps) => {
             subtotal={subtotal}
             total={total}
             taxAmount={taxAmount}
-            currency={invoiceData.currency}
             onTaxUpdate={updateTax}
             onTaxTypeUpdate={updateTaxType}
             onTaxRateUpdate={updateTaxRate}

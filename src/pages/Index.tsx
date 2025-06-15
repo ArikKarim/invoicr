@@ -35,9 +35,7 @@ const Index = () => {
     tax: 0,
     taxType: 'fixed',
     taxRate: 0,
-    total: 0,
-    currency: 'USD',
-    template: 'modern'
+    total: 0
   });
 
   const { loadSavedData, clearSavedData } = useAutoSave(invoiceData);
@@ -77,9 +75,7 @@ const Index = () => {
       tax: 0,
       taxType: 'fixed',
       taxRate: 0,
-      total: 0,
-      currency: 'USD',
-      template: 'modern'
+      total: 0
     });
     clearSavedData();
     toast.success("Invoice data cleared");
@@ -90,7 +86,7 @@ const Index = () => {
       <div className="container mx-auto px-4 py-8">
         <div className="mb-8 text-center">
           <h1 className="text-4xl font-bold bg-gradient-to-r from-primary to-blue-600 bg-clip-text text-transparent mb-3">
-            Contractor Invoice Builder
+            invoicr
           </h1>
           <p className="text-gray-600 text-lg">Create professional invoices in minutes</p>
           <div className="mt-4 flex justify-center gap-3">

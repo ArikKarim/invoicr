@@ -32,19 +32,10 @@ export const calculateTotal = (subtotal: number, tax: number): number => {
   return subtotal + tax;
 };
 
-export const formatCurrency = (amount: number, currency: string = 'USD') => {
-  const currencyMap = {
-    USD: { locale: 'en-US', currency: 'USD' },
-    EUR: { locale: 'de-DE', currency: 'EUR' },
-    GBP: { locale: 'en-GB', currency: 'GBP' },
-    CAD: { locale: 'en-CA', currency: 'CAD' }
-  };
-
-  const config = currencyMap[currency as keyof typeof currencyMap] || currencyMap.USD;
-  
-  return new Intl.NumberFormat(config.locale, {
+export const formatCurrency = (amount: number) => {
+  return new Intl.NumberFormat('en-US', {
     style: 'currency',
-    currency: config.currency
+    currency: 'USD'
   }).format(amount);
 };
 

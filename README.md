@@ -1,73 +1,54 @@
-# Welcome to your Lovable project
 
-## Project info
+# invoicr
 
-**URL**: https://lovable.dev/projects/9d7ef26b-dc40-4218-8d0f-cd7916717a7f
+A clean, modern invoice builder for contractors and freelancers. Create professional invoices in minutes with an intuitive interface and instant PDF generation.
 
-## How can I edit this code?
+## Features
 
-There are several ways of editing your application.
+- **Clean Interface** - Simple, distraction-free design focused on getting invoices done quickly
+- **Auto-save** - Never lose your work with automatic local storage
+- **Professional Output** - Generate clean, professional PDF invoices
+- **Tax Calculations** - Support for both fixed amount and percentage-based tax
+- **Line Item Management** - Easy add, remove, and duplicate line items
+- **Date Helpers** - Quick buttons for common payment terms (Net 15, Net 30, Net 60)
+- **Responsive Design** - Works on desktop, tablet, and mobile
 
-**Use Lovable**
+## Quick Start
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/9d7ef26b-dc40-4218-8d0f-cd7916717a7f) and start prompting.
+1. **Add Your Information** - Enter your business details in the contractor section
+2. **Add Client Details** - Fill in your client's information
+3. **Add Services/Items** - List what you're billing for with quantities and rates
+4. **Set Payment Terms** - Choose due date and payment method
+5. **Download PDF** - Generate a professional invoice instantly
 
-Changes made via Lovable will be committed automatically to this repo.
+## Technology
 
-**Use your preferred IDE**
+Built with modern web technologies:
+- React + TypeScript for reliability
+- Tailwind CSS for clean styling
+- shadcn/ui for consistent components
+- html2pdf.js for PDF generation
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+## Local Development
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+```bash
+# Install dependencies
+npm install
 
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+# Start development server
 npm run dev
+
+# Build for production
+npm run build
 ```
 
-**Edit a file directly in GitHub**
+## Usage Tips
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+- **Auto-save**: Your invoice data is automatically saved as you type
+- **Duplicate Items**: Use the duplicate button to quickly copy similar line items
+- **Date Shortcuts**: Click Net 15/30/60 buttons for quick due date setup
+- **Clear Data**: Use the "Clear All Data" button to start fresh
 
-**Use GitHub Codespaces**
+## License
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/9d7ef26b-dc40-4218-8d0f-cd7916717a7f) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+MIT License - feel free to use this for your business needs.

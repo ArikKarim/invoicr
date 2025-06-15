@@ -35,31 +35,6 @@ const InvoicePreview = ({ invoiceData }: InvoicePreviewProps) => {
     }
   };
 
-  const getTemplateStyles = () => {
-    switch (invoiceData.template) {
-      case 'classic':
-        return {
-          headerBg: 'bg-gray-800 text-white',
-          accent: 'text-gray-800',
-          border: 'border-gray-300'
-        };
-      case 'minimal':
-        return {
-          headerBg: 'bg-white border-b-2 border-gray-900',
-          accent: 'text-gray-900',
-          border: 'border-gray-200'
-        };
-      default: // modern
-        return {
-          headerBg: 'bg-gradient-to-r from-primary to-blue-600 text-white',
-          accent: 'text-primary',
-          border: 'border-primary/20'
-        };
-    }
-  };
-
-  const styles = getTemplateStyles();
-
   return (
     <div className="space-y-4">
       <div className="flex justify-between items-center">
@@ -82,7 +57,7 @@ const InvoicePreview = ({ invoiceData }: InvoicePreviewProps) => {
         <CardContent className="p-0">
           <div id="invoice-preview" className="bg-white p-8 text-sm">
             {/* Header */}
-            <div className={`${styles.headerBg} -m-8 mb-6 p-8`}>
+            <div className="bg-gradient-to-r from-primary to-blue-600 text-white -m-8 mb-6 p-8">
               <div className="flex justify-between items-start">
                 <div>
                   <h1 className="text-3xl font-bold mb-2">INVOICE</h1>
@@ -108,7 +83,7 @@ const InvoicePreview = ({ invoiceData }: InvoicePreviewProps) => {
             {/* Dates and Client Info */}
             <div className="grid grid-cols-2 gap-8 mb-8">
               <div>
-                <h3 className={`font-semibold ${styles.accent} mb-3`}>Bill To:</h3>
+                <h3 className="font-semibold text-primary mb-3">Bill To:</h3>
                 <div className="space-y-1">
                   <div className="font-medium">{invoiceData.client.company || invoiceData.client.name}</div>
                   {invoiceData.client.name && invoiceData.client.company && (
@@ -141,10 +116,6 @@ const InvoicePreview = ({ invoiceData }: InvoicePreviewProps) => {
                       <span className="capitalize">{invoiceData.paymentMethod.replace('-', ' ')}</span>
                     </div>
                   )}
-                  <div className="flex justify-between">
-                    <span className="font-medium">Currency:</span>
-                    <span>{invoiceData.currency}</span>
-                  </div>
                 </div>
               </div>
             </div>
@@ -153,7 +124,7 @@ const InvoicePreview = ({ invoiceData }: InvoicePreviewProps) => {
             <div className="mb-8">
               <table className="w-full">
                 <thead>
-                  <tr className={`border-b-2 ${styles.border}`}>
+                  <tr className="border-b-2 border-primary/20">
                     <th className="text-left py-3 font-semibold">Description</th>
                     <th className="text-center py-3 font-semibold w-20">Qty</th>
                     <th className="text-right py-3 font-semibold w-24">Rate</th>
@@ -165,8 +136,8 @@ const InvoicePreview = ({ invoiceData }: InvoicePreviewProps) => {
                     <tr key={index} className="border-b border-gray-100">
                       <td className="py-3">{item.description || 'Service'}</td>
                       <td className="text-center py-3">{item.quantity}</td>
-                      <td className="text-right py-3">{formatCurrency(item.rate, invoiceData.currency)}</td>
-                      <td className="text-right py-3 font-medium">{formatCurrency(calculateLineTotal(item), invoiceData.currency)}</td>
+                      <td className="text-right py-3">{formatCurrency(item.rate)}</td>
+                      <td className="text-right py-3 font-medium">{formatCurrency(calculateLineTotal(item))}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -179,7 +150,7 @@ const InvoicePreview = ({ invoiceData }: InvoicePreviewProps) => {
                 <div className="space-y-2">
                   <div className="flex justify-between">
                     <span>Subtotal:</span>
-                    <span>{formatCurrency(invoiceData.subtotal, invoiceData.currency)}</span>
+                    <span>{formatCurrency(invoiceData.subtotal)}</span>
                   </div>
                   {(invoiceData.tax > 0 || invoiceData.taxRate > 0) && (
                     <div className="flex justify-between">
@@ -188,15 +159,15 @@ const InvoicePreview = ({ invoiceData }: InvoicePreviewProps) => {
                       </span>
                       <span>
                         {invoiceData.taxType === 'percentage' 
-                          ? formatCurrency((invoiceData.subtotal * invoiceData.taxRate) / 100, invoiceData.currency)
-                          : formatCurrency(invoiceData.tax, invoiceData.currency)
+                          ? formatCurrency((invoiceData.subtotal * invoiceData.taxRate) / 100)
+                          : formatCurrency(invoiceData.tax)
                         }
                       </span>
                     </div>
                   )}
-                  <div className={`border-t pt-2 flex justify-between font-bold text-lg ${styles.accent}`}>
+                  <div className="border-t pt-2 flex justify-between font-bold text-lg text-primary">
                     <span>Total:</span>
-                    <span>{formatCurrency(invoiceData.total, invoiceData.currency)}</span>
+                    <span>{formatCurrency(invoiceData.total)}</span>
                   </div>
                 </div>
               </div>
@@ -205,7 +176,7 @@ const InvoicePreview = ({ invoiceData }: InvoicePreviewProps) => {
             {/* Contractor Address */}
             {invoiceData.contractor.address && (
               <div className="mb-6">
-                <h4 className={`font-semibold ${styles.accent} mb-2`}>From:</h4>
+                <h4 className="font-semibold text-primary mb-2">From:</h4>
                 <div className="text-gray-600 whitespace-pre-line">{invoiceData.contractor.address}</div>
               </div>
             )}
@@ -213,7 +184,7 @@ const InvoicePreview = ({ invoiceData }: InvoicePreviewProps) => {
             {/* Notes */}
             {invoiceData.notes && (
               <div className="border-t pt-6">
-                <h4 className={`font-semibold ${styles.accent} mb-2`}>Notes:</h4>
+                <h4 className="font-semibold text-primary mb-2">Notes:</h4>
                 <div className="text-gray-600 whitespace-pre-line">{invoiceData.notes}</div>
               </div>
             )}
