@@ -1,9 +1,11 @@
+
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { toast } from 'sonner';
 import InvoiceForm from '@/components/InvoiceForm';
 import InvoicePreview from '@/components/InvoicePreview';
 import ColorController from '@/components/ColorController';
+import ScrollToTop from '@/components/ScrollToTop';
 import { InvoiceData } from '@/types/invoice';
 import { generateInvoiceNumber } from '@/utils/invoiceUtils';
 import { useAutoSave } from '@/hooks/useAutoSave';
@@ -164,6 +166,8 @@ const Index = () => {
           </p>
         </div>
       </footer>
+      
+      <ScrollToTop />
     </div>
   );
 };
