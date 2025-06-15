@@ -7,7 +7,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Plus, Trash2 } from 'lucide-react';
-import { InvoiceData, LineItem } from '@/types/invoice';
+import { InvoiceData, LineItem, ContactInfo } from '@/types/invoice';
 import { calculateSubtotal, calculateTotal } from '@/utils/invoiceUtils';
 
 interface InvoiceFormProps {
@@ -19,10 +19,11 @@ const InvoiceForm = ({ invoiceData, setInvoiceData }: InvoiceFormProps) => {
   const updateField = (section: string, field: string, value: string | number) => {
     if (section === 'root') {
       setInvoiceData({ ...invoiceData, [field]: value });
-    } else {
+    } else if (section === 'contractor' || section === 'client') {
+      const contactInfo = invoiceData[section] as ContactInfo;
       setInvoiceData({
         ...invoiceData,
-        [section]: { ...invoiceData[section as keyof InvoiceData], [field]: value }
+        [section]: { ...contactInfo, [field]: value }
       });
     }
   };
