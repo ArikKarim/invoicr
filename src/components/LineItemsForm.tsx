@@ -5,7 +5,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Plus, Trash2, Copy } from 'lucide-react';
 import { LineItem } from '@/types/invoice';
-import { duplicateLineItem } from '@/utils/invoiceUtils';
+import { formatCurrency, duplicateLineItem } from '@/utils/invoiceUtils';
 
 interface LineItemsFormProps {
   lineItems: LineItem[];
@@ -13,7 +13,6 @@ interface LineItemsFormProps {
   onAdd: () => void;
   onRemove: (index: number) => void;
   onDuplicate: (index: number) => void;
-  currency: string;
 }
 
 const LineItemsForm = ({ 
@@ -21,8 +20,7 @@ const LineItemsForm = ({
   onUpdate, 
   onAdd, 
   onRemove, 
-  onDuplicate,
-  currency 
+  onDuplicate
 }: LineItemsFormProps) => {
   const calculateLineTotal = (item: LineItem) => item.quantity * item.rate;
 
@@ -52,7 +50,7 @@ const LineItemsForm = ({
             />
           </div>
           <div className="col-span-4 md:col-span-2">
-            <Label htmlFor={`rate-${index}`}>Rate ({currency})</Label>
+            <Label htmlFor={`rate-${index}`}>Rate (USD)</Label>
             <Input
               id={`rate-${index}`}
               type="number"
@@ -66,7 +64,7 @@ const LineItemsForm = ({
           <div className="col-span-4 md:col-span-2">
             <Label>Total</Label>
             <div className="h-10 px-3 py-2 bg-gray-100 border rounded-md flex items-center font-medium">
-              {new Intl.NumberFormat('en-US', { style: 'currency', currency }).format(calculateLineTotal(item))}
+              {formatCurrency(calculateLineTotal(item))}
             </div>
           </div>
           <div className="col-span-12 md:col-span-1 flex gap-1">

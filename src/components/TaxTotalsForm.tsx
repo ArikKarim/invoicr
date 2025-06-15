@@ -11,7 +11,6 @@ interface TaxTotalsFormProps {
   subtotal: number;
   total: number;
   taxAmount: number;
-  currency: string;
   onTaxUpdate: (value: string) => void;
   onTaxTypeUpdate: (type: 'fixed' | 'percentage') => void;
   onTaxRateUpdate: (rate: string) => void;
@@ -24,7 +23,6 @@ const TaxTotalsForm = ({
   subtotal, 
   total, 
   taxAmount,
-  currency,
   onTaxUpdate, 
   onTaxTypeUpdate, 
   onTaxRateUpdate 
@@ -48,7 +46,7 @@ const TaxTotalsForm = ({
           
           {taxType === 'fixed' ? (
             <div>
-              <Label htmlFor="tax">Tax Amount ({currency})</Label>
+              <Label htmlFor="tax">Tax Amount (USD)</Label>
               <Input
                 id="tax"
                 type="number"
@@ -82,19 +80,19 @@ const TaxTotalsForm = ({
           <div className="space-y-3">
             <div className="flex justify-between text-sm">
               <span className="text-gray-600">Subtotal:</span>
-              <span className="font-medium">{formatCurrency(subtotal, currency)}</span>
+              <span className="font-medium">{formatCurrency(subtotal)}</span>
             </div>
             {taxAmount > 0 && (
               <div className="flex justify-between text-sm">
                 <span className="text-gray-600">
                   Tax {taxType === 'percentage' ? `(${taxRate}%)` : ''}:
                 </span>
-                <span className="font-medium">{formatCurrency(taxAmount, currency)}</span>
+                <span className="font-medium">{formatCurrency(taxAmount)}</span>
               </div>
             )}
             <div className="border-t pt-2 flex justify-between font-bold text-lg">
               <span>Total:</span>
-              <span className="text-primary">{formatCurrency(total, currency)}</span>
+              <span className="text-primary">{formatCurrency(total)}</span>
             </div>
           </div>
         </div>
