@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { toast } from 'sonner';
@@ -85,22 +86,22 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50 to-indigo-100">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50 to-indigo-100 font-inter">
       <div className="container mx-auto px-4 py-8">
-        <div className="mb-8 text-center">
-          <h1 className="text-4xl font-bold bg-gradient-to-r from-primary to-blue-600 bg-clip-text text-transparent mb-3">
-            Invoicr
-          </h1>
-          <p className="text-gray-600 text-lg">Make a statement with Invoicr.</p>
-          <div className="mt-4 flex justify-center gap-3">
-            <Button 
-              variant="outline" 
-              onClick={handleClearData}
-              className="hover:bg-red-50 hover:border-red-200 hover:text-red-700"
-            >
-              Clear All Data
-            </Button>
+        <div className="mb-8 flex justify-between items-start">
+          <div className="text-left">
+            <h1 className="text-4xl font-bold text-gray-900 mb-2">
+              Invoicr
+            </h1>
+            <p className="text-gray-600 text-lg font-medium">Make a statement with Invoicr.</p>
           </div>
+          <Button 
+            variant="outline" 
+            onClick={handleClearData}
+            className="hover:bg-red-50 hover:border-red-200 hover:text-red-700 font-medium"
+          >
+            Clear All Data
+          </Button>
         </div>
         
         <div className="grid lg:grid-cols-2 gap-8">
