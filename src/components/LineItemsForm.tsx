@@ -70,21 +70,21 @@ const LineItemsForm = ({
           <div className="col-span-12 md:col-span-1 flex gap-2 justify-end">
             <Button
               type="button"
-              variant="outline"
+              variant="ghost"
               size="icon"
               onClick={() => onDuplicate(index)}
-              className="h-8 w-8 bg-blue-50 border-blue-200 text-blue-600 hover:bg-blue-100 hover:border-blue-300 hover:text-blue-700 transition-all duration-200"
+              className="h-8 w-8 text-blue-600 hover:text-blue-700"
               title="Duplicate item"
             >
               <Copy className="h-3.5 w-3.5" />
             </Button>
             <Button
               type="button"
-              variant="outline"
+              variant="ghost"
               size="icon"
               onClick={() => onRemove(index)}
               disabled={lineItems.length === 1}
-              className="h-8 w-8 bg-red-50 border-red-200 text-red-600 hover:bg-red-100 hover:border-red-300 hover:text-red-700 disabled:bg-gray-50 disabled:border-gray-200 disabled:text-gray-400 transition-all duration-200"
+              className="h-8 w-8 text-red-600 hover:text-red-700 disabled:text-gray-400"
               title="Remove item"
             >
               <Trash2 className="h-3.5 w-3.5" />
