@@ -1,4 +1,3 @@
-
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -86,6 +85,14 @@ const InvoiceForm = ({ invoiceData, setInvoiceData }: InvoiceFormProps) => {
     });
   };
 
+  const handleBulkImport = (newItems: LineItem[]) => {
+    // Replace existing items with imported ones, but keep at least one item
+    setInvoiceData({
+      ...invoiceData,
+      lineItems: newItems.length > 0 ? newItems : [{ description: '', quantity: 1, rate: 0 }]
+    });
+  };
+
   const updateTax = (value: string) => {
     const tax = parseFloat(value) || 0;
     setInvoiceData({ ...invoiceData, tax });
@@ -159,6 +166,7 @@ const InvoiceForm = ({ invoiceData, setInvoiceData }: InvoiceFormProps) => {
             onAdd={addLineItem}
             onRemove={removeLineItem}
             onDuplicate={duplicateLineItemHandler}
+            onBulkImport={handleBulkImport}
           />
           
           <TaxTotalsForm
