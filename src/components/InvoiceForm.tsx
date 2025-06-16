@@ -1,3 +1,4 @@
+
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -11,6 +12,7 @@ import ContactInfoForm from './ContactInfoForm';
 import LineItemsForm from './LineItemsForm';
 import InvoiceDetailsForm from './InvoiceDetailsForm';
 import TaxTotalsForm from './TaxTotalsForm';
+import { useEffect } from 'react';
 
 interface InvoiceFormProps {
   invoiceData: InvoiceData;
@@ -19,6 +21,15 @@ interface InvoiceFormProps {
 
 const InvoiceForm = ({ invoiceData, setInvoiceData }: InvoiceFormProps) => {
   const { subtotal, total, taxAmount } = useInvoiceCalculations(invoiceData);
+
+  // Update invoice data with calculated values whenever they change
+  useEffect(() => {
+    setInvoiceData({
+      ...invoiceData,
+      subtotal,
+      total
+    });
+  }, [subtotal, total]);
 
   const updateField = (section: string, field: string, value: string | number) => {
     if (section === 'root') {
@@ -42,9 +53,7 @@ const InvoiceForm = ({ invoiceData, setInvoiceData }: InvoiceFormProps) => {
     
     setInvoiceData({
       ...invoiceData,
-      lineItems: updatedItems,
-      subtotal,
-      total
+      lineItems: updatedItems
     });
   };
 
@@ -60,9 +69,7 @@ const InvoiceForm = ({ invoiceData, setInvoiceData }: InvoiceFormProps) => {
       const updatedItems = invoiceData.lineItems.filter((_, i) => i !== index);
       setInvoiceData({
         ...invoiceData,
-        lineItems: updatedItems,
-        subtotal,
-        total
+        lineItems: updatedItems
       });
     }
   };
@@ -75,24 +82,22 @@ const InvoiceForm = ({ invoiceData, setInvoiceData }: InvoiceFormProps) => {
     
     setInvoiceData({
       ...invoiceData,
-      lineItems: updatedItems,
-      subtotal,
-      total
+      lineItems: updatedItems
     });
   };
 
   const updateTax = (value: string) => {
     const tax = parseFloat(value) || 0;
-    setInvoiceData({ ...invoiceData, tax, total });
+    setInvoiceData({ ...invoiceData, tax });
   };
 
   const updateTaxType = (taxType: 'fixed' | 'percentage') => {
-    setInvoiceData({ ...invoiceData, taxType, total });
+    setInvoiceData({ ...invoiceData, taxType });
   };
 
   const updateTaxRate = (value: string) => {
     const taxRate = parseFloat(value) || 0;
-    setInvoiceData({ ...invoiceData, taxRate, total });
+    setInvoiceData({ ...invoiceData, taxRate });
   };
 
   return (

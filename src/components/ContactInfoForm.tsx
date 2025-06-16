@@ -3,6 +3,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { ContactInfo } from '@/types/invoice';
+import { formatPhoneNumber } from '@/utils/phoneUtils';
 
 interface ContactInfoFormProps {
   contactInfo: ContactInfo;
@@ -33,6 +34,11 @@ const ContactInfoForm = ({ contactInfo, onUpdate, title, type }: ContactInfoForm
   };
 
   const placeholders = getPlaceholders();
+
+  const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const formattedPhone = formatPhoneNumber(e.target.value);
+    onUpdate('phone', formattedPhone);
+  };
 
   return (
     <div className="space-y-4">
@@ -76,7 +82,7 @@ const ContactInfoForm = ({ contactInfo, onUpdate, title, type }: ContactInfoForm
             <Input
               id={`${type}Phone`}
               value={contactInfo.phone || ''}
-              onChange={(e) => onUpdate('phone', e.target.value)}
+              onChange={handlePhoneChange}
               placeholder={placeholders.phone}
               className="transition-all duration-200 focus:ring-2 focus:ring-primary/20"
             />
