@@ -1,4 +1,3 @@
-
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -28,8 +27,8 @@ const InvoiceDetailsForm = ({
             id="invoiceNumber"
             value={invoiceNumber}
             onChange={(e) => onUpdate('invoiceNumber', e.target.value)}
-            className="bg-gray-50 font-mono"
-            readOnly
+            className="font-mono transition-all duration-200 focus:ring-2 focus:ring-primary/20"
+            placeholder="Enter invoice number"
           />
         </div>
         <div>
